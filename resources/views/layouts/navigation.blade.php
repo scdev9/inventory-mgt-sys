@@ -10,9 +10,9 @@
                 <div class="position-relative">
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600"/>
+                        <!--x-application-logo class="block h-10 w-auto fill-current text-gray-600"/-->
                        
-                        <!--img src="/public/images/logo.png" width="80" height="30"-->
+                        <img src="/images/logo.png" width="80" height="30">
                     </a>
                 </div>
                 </div>
