@@ -19,7 +19,7 @@
       <p class="position-absolute" style="margin-left: 270px;margin-top: 70px;">Dashboard / Product</p>
 
 
-      <div class="col-md-6 position-relative">
+      <div class="col-md-6 ">
         <div class="card position-absolute start-30 top-30 border border-0" style="width: 67rem; margin-left:16rem;margin-top:6.5rem;border-radius:25px;">
             <div class="card-body">
 

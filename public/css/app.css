@@ -14,6 +14,14 @@
   border-color: #e5e7eb; /* 2 */
 }
 
+
+.hov:hover{
+  background-color:hsla(349, 94%, 58%, 0.34);
+  border-right-style: solid;
+  border-color: red;
+}
+
+
 ::before,
 ::after {
   --tw-content: '';
