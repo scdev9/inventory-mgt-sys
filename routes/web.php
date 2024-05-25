@@ -19,6 +19,10 @@ Route::get('/', function () {
 });
 
 Route::get("/product" ,[ProductController::class, 'index']);
+Route::get("product/create",[ProductController::class, 'create']);
+Route::get("product/{id}/edit",[ProductController::class, 'edit']);
+Route::get("product/{id}/view",[ProductController::class, 'view']);
+Route::put('product/{id}/edit',[ProductController::class, 'update']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

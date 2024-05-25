@@ -12,9 +12,11 @@
             {{ __('Product') }}
         </h2-->
     </x-slot>
-     <button type="button " class="btn btn-danger position-absolute w-250 h-15 fw-bold" style="margin-left: 70rem; margin-top: 20px; border-radius:15px;"><span class="material-symbols-outlined">
+     <a href="{{url('product/create')}}" class="btn btn-danger position-absolute  fw-bold" style="margin-left: 70rem; margin-top: 20px; border-radius:15px;"><span class="material-symbols-outlined">
             upload
-        </span>Add Product</button>
+        </span>Add Product</a>
+
+
       <h2 class="position-absolute fw-bold" style="margin-left: 270px;margin-top: 20px;">Product</h2>
       <p class="position-absolute" style="margin-left: 270px;margin-top: 70px;">Dashboard / Product</p>
 
@@ -53,15 +55,15 @@
                             </td>
                             <td>{{$product->CategoryName}}</td>
                             <td>
-                                <button type="button" class="btn btn-success w-8 h-8"><span class="material-symbols-outlined">
+                                <a href="{{url('product/'.$product->ProductID.'/view')}}" ><button class="btn btn-success w-9 h-8 " ><!--span class="material-symbols-outlined">
                                         visibility
-                                    </span></button>
-                                <button type="button" class="btn btn-primary w-8 h-8"><span class="material-symbols-outlined">
+                                    </span--><img src="images/view.svg" ></button></a>
+                                <a href="{{url('product/'.$product->ProductID.'/edit')}}" ><button class="btn btn-primary w-9 h-8"><!--span class="material-symbols-outlined">
                                         edit
-                                    </span></button>
-                                <button type="button" class="btn btn-danger w-8 h-8"><span class="material-symbols-outlined">
+                                    </span--><img src="images/edit.svg" ></button></a>
+                                <a href="{{url('product/'.$product->ProductID.'/delete')}}" ><button class="btn btn-danger w-9 h-8"><!--span class="material-symbols-outlined">
                                         delete
-                                    </span></button>
+                                    </span--><img src="images/delete.svg" ></button></a>
                             </td>
                         </tr>
                         @endforeach
