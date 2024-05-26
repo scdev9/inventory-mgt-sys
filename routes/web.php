@@ -18,12 +18,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Product Routes--------------------------------------------------------------------------------------- 
 Route::get("/product" ,[ProductController::class, 'index']);
 Route::get("product/create",[ProductController::class, 'create']);
 Route::get("product/{id}/edit",[ProductController::class, 'edit']);
 Route::get("product/{id}/view",[ProductController::class, 'view']);
 Route::put('product/{id}/edit',[ProductController::class, 'update']);
+Route::get('product/search',[ProductController::class,'search']);
+Route::put('product/create',[ProductController::class, 'store']);
 
+//Dashboard Route---------------------------------------------------------------------------------------
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

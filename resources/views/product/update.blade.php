@@ -1,20 +1,20 @@
 <x-app-layout>
-    <!--Google icon-->
+<!--Google icon-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-
+<!--X-slot-->
     <x-slot name="header" >
     
     </x-slot>
+<!--Back Button-->    
     <a href="{{url('/product')}}" class="btn btn-danger position-absolute  fw-bold" style="margin-left: 70rem; margin-top: 20px; border-radius:15px;"><span class="material-symbols-outlined">
             arrow_back
         </span>Back</a>
-
-
+<!--Product Head-->
     <h2 class="position-absolute fw-bold" style="margin-left: 270px;margin-top: 20px;">Product Edit</h2>
     <p class="position-absolute" style="margin-left: 270px;margin-top: 70px;">Product / Edit</p>
 
-
+<!--Card-->
     <div class="col-md-6 ">
     
 
@@ -25,7 +25,7 @@
             <div class="alert alert-success p-2">{{session('status')}}</div>
             @endif 
             
-
+  <!--Product Update Form-->
                 <form action="{{url('product/'.$product->ProductID.'/edit')}}" method="POST">
                     @csrf
                     @method('PUT')
