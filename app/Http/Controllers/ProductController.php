@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    //Retun View Of Products
+//Retun All Of Products----------------------------------------------------------------------------------
+
     public function index(){
         $products = DB::table('products')
         ->join('categories', 'products.CategoryID', '=', 'categories.CategoryID')
@@ -22,12 +23,53 @@ class ProductController extends Controller
      
     }
 
-
-
     public function create(){
-        return view('product/create');
+
+        $categories=DB::select('select * from categories') ;
+        $suppliers=DB::select('select * from suppliers');
+
+        return view('product/create',compact('categories','suppliers'));
+
     }
 
+
+
+//Store New Products-----------------------------------------------------------------------------
+
+    public function store(Request $request){
+
+        $messages=[
+            'productName.required'=>'You must input product name here'
+        ];
+
+        $request->validate([
+            'productName.required'=>'required|max:255|string',
+            'productCategory'=>'required|max:50|string',
+            'productSkuID'=>'required|string',
+            'productSupplier'=>'required|string'
+        ],$messages);
+       
+       $category=Category::where('CategoryName',$request->productCategory)->firstOrFail();
+       $supplier=Supplier::where('SupplierName',$request->productSupplier)->firstOrFail();
+        
+        $updateDetails=[
+            'ProductName'=> $request->productName,
+            'CategoryID'=> $category->CategoryID,
+            'SkuID'=> $request->productSkuID,
+            'SupplierID'=> $supplier->SupplierID
+        ];
+        // Notice the call below
+         //dd($updateDetails);
+         Product::create($updateDetails);
+    
+
+        return redirect()->back()->with('status','Product Created Successfully!');
+       
+       
+    }
+
+
+// Edit Product-------------------------------------------------------------------------------------
 
     public function edit(int $id){
 
@@ -70,14 +112,28 @@ class ProductController extends Controller
        
     }
 
-
+// View Product---------------------------------------------------------------------------------------
     public function view(int $id){
        
         
        
         return view('product/details');
     }
+// Search Product-------------------------------------------------------------------------------------
+    public function search(Request $request){
+       
+        $search=$request->search;
+        $searchProduct=Product::where(function($query) use ($search){
+             
+            $query->where('ProductName','like',"%$search%")
+            ->orWhere('SkuID','like',"%$search%");
+        })->get();
+       
+        
+    }
 
+
+    
 
         
     
