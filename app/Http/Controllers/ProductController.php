@@ -38,12 +38,16 @@ class ProductController extends Controller
 
     public function store(Request $request){
 
+        $messages=[
+            'productName.required'=>'You must input product name here'
+        ];
+
         $request->validate([
-            'productName'=>'required|max:255|string',
+            'productName.required'=>'required|max:255|string',
             'productCategory'=>'required|max:50|string',
             'productSkuID'=>'required|string',
             'productSupplier'=>'required|string'
-        ]);
+        ],$messages);
        
        $category=Category::where('CategoryName',$request->productCategory)->firstOrFail();
        $supplier=Supplier::where('SupplierName',$request->productSupplier)->firstOrFail();
