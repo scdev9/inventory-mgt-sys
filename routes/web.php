@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,9 @@ Route::put('product/create',[ProductController::class, 'store']);
 Route::get('/invoice',[InvoiceController::class,'index']);
 Route::get('order/create',[InvoiceController::class,'create']);
 Route::put('order/create',[InvoiceController::class,'store']);
+Route::get('order/{id}/view',[InvoiceController::class,'view']);
+Route::put('invoice/{id}/accept',[InvoiceController::class,'accept']);
+Route::get('/supplier',[SupplierController::class,'index']);
 //Dashboard Route---------------------------------------------------------------------------------------
 Route::get('/dashboard', function () {
     return view('dashboard');

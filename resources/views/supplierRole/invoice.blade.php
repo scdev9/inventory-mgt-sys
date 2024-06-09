@@ -19,9 +19,9 @@
 
 
     <!--Add product Button-->
-    <a href="{{url('order/create')}}" class="btn btn-danger position-absolute  fw-bold" style="margin-left: 70rem; margin-top: 20px; border-radius:15px;"><span class="material-symbols-outlined">
+    <!--a href="{{url('order/create')}}" class="btn btn-danger position-absolute  fw-bold" style="margin-left: 70rem; margin-top: 20px; border-radius:15px;"><span class="material-symbols-outlined">
             upload
-        </span>Create Order</a>
+        </span>Create Order</a-->
 
 
     <!--Product Head-->
@@ -48,52 +48,46 @@
                         <tr>
                             <th scope="col">Purchase ID</th>
                             <th scope="col">Order Date</th>
-                            <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($salesOrders as $order)
+                        @foreach($supplierAccept as $accept)
+
                         <tr>
-                            <th scope="row">{{$order->PurchaseID}}</th>
-                            <td>{{$order->PurchaseDate}}</td>
-                        @if ($order->Status==0)
-                            <td class="text-danger" >Pending</td>
-                        @elseif ($order->Status==1)
-                        <td class="text-success" >Accepted</td>
-                        @endif
-                        
+                            <th scope="row">{{$accept->PurchaseID}}</th>
+                            <td>{{$accept->PurchaseDate}}</td>
+
                             <td>
-                                <a href="{{url('order/'.$order->PurchaseID.'/view')}}"><button class="btn btn-success w-9 h-8 "><!--span class="material-symbols-outlined">
+
+
+                                <a href="{{url('order/'.$accept->PurchaseID.'/view')}}"><button class="btn btn-success w-9 h-8 "><!--span class="material-symbols-outlined">
                                         visibility
-                               
-                                    </span-->
-                                    @if ($order->Status==1)  
-                                    <img src="images/view.svg"></button></a>
-                                <a href="{{url('order/'.$order->PurchaseID.'/cannot')}}" ><button class="btn btn-primary w-9 h-8" disabled><!--span class="material-symbols-outlined">
-                                        edit
-                                    </span-->
-                                    <img src="images/edit.svg"></button></a>
-                                <a href="{{url('order/'.$order->PurchaseID.'/cannot')}}"><button class="btn btn-danger w-9 h-8" disabled><!--span class="material-symbols-outlined">
-                                        delete
-                                    @else
-                                     <img src="images/view.svg"></button></a>
-                                       <a href="{{url('order/'.$order->PurchaseID.'/edit')}}"><button class="btn btn-primary w-9 h-8">
-                                    @endif
-                                    
-                                    <img src="images/edit.svg"></button></a>
-                                <a href="{{url('order/'.$order->PurchaseID.'/delete')}}"><button class="btn btn-danger w-9 h-8"><!--span class="material-symbols-outlined">
+                                    </span--><img src="images/view.svg"></button></a>
+
+
+                                <form method="POST" action="{{ url('invoice/'.$accept->PurchaseID.'/accept') }}">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" id="size" name="status" value="1" />
+                                    <button type="submit" class="btn btn-primary w-9 h-8">Accept</button>
+                                </form>
+
+
+                                <a href="{{url('order/'.$accept->PurchaseID.'/delete')}}"><button class="btn btn-danger w-9 h-8"><!--span class="material-symbols-outlined">
                                         delete
                                     </span--><img src="images/delete.svg"></button></a>
+
                             </td>
+
                         </tr>
                         @endforeach
 
                     </tbody>
                 </table>
 
-               
-                
+
+
             </div>
         </div>
     </div>

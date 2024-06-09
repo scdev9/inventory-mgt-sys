@@ -10,4 +10,8 @@ class Supplier extends Model
     use HasFactory;
 
     protected $table='suppliers';
+
+    public function salesOrders(){
+        return $this->hasMany(SalesOrder::class,"Supplier",'SupplierID');
+    }
 }
